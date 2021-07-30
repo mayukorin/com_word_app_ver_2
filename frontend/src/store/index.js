@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import api from "../services/api";
 
 Vue.use(Vuex);
 
@@ -16,14 +16,20 @@ const analyzeModule = {
     clear(state) {
       state.result = {};
     },
-    print() {
-      console.log("ok");
-    }
   },
   actions: {
     execute(context, payload) {
-      console.log(payload);
-      context.commit("print");
+      console.log(payload.sentence);
+      return api({
+        method: "post",
+        url: "/analyze/execute",
+        data: {
+          sentence: payload.sentence,
+        },
+      }).then((response) => {
+        console.log(response.data.result);
+        context.commit("set", { result: response.data.result });
+      });
     },
   },
 };

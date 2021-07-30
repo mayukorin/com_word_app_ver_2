@@ -6,12 +6,12 @@ from nltk.stem.porter import PorterStemmer
 import nltk
 import wikipedia
 import re
+from .models import StopWord
+
 class SentenceAnalyzeView(views.APIView):
 
     def post(self, request, *args, **kwargs):
         sentence = request.data["sentence"]
-        sentence = word_tokenize(sentence)
-        '''
         # ノイズ除去
         for sw in StopWord.objects.all():
             remove_text = '\s' + sw.word + '\s'
@@ -34,14 +34,9 @@ class SentenceAnalyzeView(views.APIView):
                 except wikipedia.DisambiguationError as e:
                     print(e)
                 except wikipedia.PageError as e:
-                    # エラーページが何か，出さないと
                     print(e)
         
             result[word] = [wiki_url, count]
-        '''
-        result = {}
-        result["abc"] = ["aa", 1]
-        print(result)
         res_list = {
             'result': result
         }
