@@ -4,7 +4,7 @@
 
 # DEMO
 
-[こちらにアクセス](https://todo-django-vue2.herokuapp.com/login)
+[こちらにアクセス](https://com-word-app-ver-2.herokuapp.com/)
 
 # Features
 
@@ -25,10 +25,10 @@ https://docs.docker.jp/get-docker.html
 
 # Usage
 
-- `git clone https://github.com/mayukorin/django-vue-todo.git`
+- `git clone https://github.com/mayukorin/com_word_app_ver_2.git`
 - docker-compose.yml の front: 内にある `command: "npm run serve"` をコメントアウト
 - `docker-compose up`
-- `docker exec -it django-vue-todo_web_1 bash` で frontのコンテナ内に入る
+- `docker exec -it com_word_app2_front_1 bash` で frontのコンテナ内に入る
 - コンテナ内で `npm install`
 - `exit` でコンテナを出る
 - 先ほどのコメントアウトを外して，`docker-compose up --build`
