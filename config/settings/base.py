@@ -124,4 +124,4 @@ REST_FRAMEWORK = {
 }
 
 # AUTH_MODEL
-AUTH_USER_MODEL = 'todo_app.User'
+# AUTH_USER_MODEL = 'todo_app.User'
