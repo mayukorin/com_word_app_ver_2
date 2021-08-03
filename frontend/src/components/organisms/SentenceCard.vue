@@ -4,6 +4,7 @@
       <span class="headline">頻出単語を調べる</span>
     </v-card-title>
     <v-card-text>
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       <SentenceForm :onanalyze="handleAnalyze" />
     </v-card-text>
   </v-card>
