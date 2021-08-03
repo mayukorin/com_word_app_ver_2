@@ -5,7 +5,7 @@
         <v-form ref="form" class="mb-3">
           <v-textarea
             counter="1000"
-            label="頻出単語を調べたい文章を入力してください(1000文字まで)"
+            label="文章(1000文字まで)"
             :rules="rules.sentence"
             v-model="form.sentence"
           ></v-textarea>

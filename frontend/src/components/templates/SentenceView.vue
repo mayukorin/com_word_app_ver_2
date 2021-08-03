@@ -4,42 +4,22 @@
       <v-row>
         <v-col cols="12">
           <v-list>
-            <v-list-item>
+            <v-list-item v-for="ex in explain" :key="ex.heading">
               <v-list-item-icon>
                 <v-icon>mdi-play</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>
-                  頻出単語の出現回数
+                  {{ ex.heading }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
-                  頻出単語とその出現回数が棒グラフに最大10個まで表示
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-icon>
-                <v-icon>mdi-play</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>
-                  頻出単語を調べる
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  棒グラフをクリックすれば，その単語に関連するwikipediaへ移動
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-icon>
-                <v-icon>mdi-play</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>
-                  こういう時に便利
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  論文を読む，参考書を読む，...
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        {{ ex.detail }}
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -64,5 +44,14 @@ export default {
     SentenceCard,
     WordGraphFrame,
   },
+  data() {
+    return {
+      explain: [
+        {heading: "頻出単語が分かる", detail: "頻出単語とその出現回数が棒グラフに最大10個まで表示"},
+        {heading: "頻出単語を調べる", detail: "棒グラフをクリックすれば，その単語に関連するwikipediaへ移動"},
+        {heading: "こういう時に便利", detail: "論文を読む，参考書を読む時など..."},
+      ]
+    }
+  }
 };
 </script>
