@@ -1,30 +1,26 @@
 <template>
   <div id="sentence-view">
+  <div class="ma-5">
+    <div v-for="ex in explain" :key="ex.heading">
+      <v-container>
+        <v-row>
+          <v-col cols="1" class="text-right">
+            <v-icon>mdi-play</v-icon>
+          </v-col>
+          <v-col cols="11">
+            <div>
+              {{ ex.heading }}
+            </div>
+            <v-subheader>
+              {{ ex.detail }}
+            </v-subheader>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+  </div>
     <v-container class="my-5">
       <v-row>
-        <v-col cols="12">
-          <v-list>
-            <v-list-item v-for="ex in explain" :key="ex.heading">
-              <v-list-item-icon>
-                <v-icon>mdi-play</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ ex.heading }}
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12">
-                        {{ ex.detail }}
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-col>
         <v-col cols="12" md="6">
           <SentenceCard />
         </v-col>
