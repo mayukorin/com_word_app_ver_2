@@ -1,1 +1,3 @@
 punkt
+twitter_samples
+stopwords

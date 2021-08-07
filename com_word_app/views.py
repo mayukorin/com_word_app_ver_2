@@ -7,6 +7,7 @@ import nltk
 import wikipedia
 import re
 from .models import StopWord
+from nltk.corpus import stopwords
 
 
 class SentenceAnalyzeView(views.APIView):
@@ -14,14 +15,17 @@ class SentenceAnalyzeView(views.APIView):
 
         result = {}
         if request.data.get("sentence") is not None:
-            sentence = request.data["sentence"]
-            # ノイズ除去
-            for sw in StopWord.objects.all():
-                remove_text = "\s" + sw.word + "\s"
-                sentence = re.sub(remove_text, " ", sentence)
 
-            sentence = word_tokenize(sentence)
-            common_10_words = (nltk.FreqDist(sentence)).most_common(10)
+            word_tokens = word_tokenize(request.data["sentence"])
+            # ノイズ除去
+            filtered_sentence = []
+            default_stop_words = set(stopwords.words("english"))
+            db_stop_words = [sw.word for sw in StopWord.objects.all()]
+            for w in word_tokens:
+                if w not in default_stop_words and w not in db_stop_words:
+                    filtered_sentence.append(w)
+
+            common_10_words = (nltk.FreqDist(filtered_sentence)).most_common(10)
 
             for word_and_count in common_10_words:
                 word = word_and_count[0]
