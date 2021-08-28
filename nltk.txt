@@ -1,3 +1,5 @@
 punkt
 twitter_samples
 stopwords
+wordnet
+averaged_perceptron_tagger
