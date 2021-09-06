@@ -15,7 +15,6 @@ from nltk.tag import pos_tag
 class SentenceAnalyzeView(views.APIView):
     def post(self, request, *args, **kwargs):
         lem = WordNetLemmatizer()
-        print(lem.lemmatize('swam',  'v'))
         
         result = {}
         if request.data.get("sentence") is not None:
