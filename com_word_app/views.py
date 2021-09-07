@@ -15,23 +15,23 @@ from nltk.tag import pos_tag
 class SentenceAnalyzeView(views.APIView):
     def post(self, request, *args, **kwargs):
         lem = WordNetLemmatizer()
-        
+
         result = {}
         if request.data.get("sentence") is not None:
 
             word_tokens = word_tokenize(request.data["sentence"])
-            
+
             # 正規化
             lemmatized_sentence = []
             for word, tag in pos_tag(word_tokens):
-                if tag.startswith('NN'):
-                    pos = 'n'
-                elif tag.startswith('VB'):
-                    pos = 'v'
+                if tag.startswith("NN"):
+                    pos = "n"
+                elif tag.startswith("VB"):
+                    pos = "v"
                 else:
-                    pos = 'a'
+                    pos = "a"
                 lemmatized_sentence.append(lem.lemmatize(word, pos))
-            print(lemmatized_sentence)
+
             # ノイズ除去
             filtered_sentence = []
             default_stop_words = set(stopwords.words("english"))
@@ -48,8 +48,6 @@ class SentenceAnalyzeView(views.APIView):
                 wiki_url = ""
                 search_response = wikipedia.search(word)
                 if search_response:
-                    print(word)
-                    print(search_response[0])
                     try:
                         wiki_page = wikipedia.page(search_response[0])
                         wiki_url = wiki_page.url
