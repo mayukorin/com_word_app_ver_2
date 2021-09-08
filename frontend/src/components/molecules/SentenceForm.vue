@@ -4,8 +4,8 @@
       <v-col cols="12">
         <v-form ref="form" class="mb-3">
           <v-textarea
-            counter="1000"
-            label="文章(1000文字まで)"
+            counter="2000"
+            label="文章(2000文字まで)"
             :rules="rules.sentence"
             v-model="form.sentence"
           ></v-textarea>
@@ -36,7 +36,7 @@ export default {
       },
       rules: {
         sentence: [
-          (v) => v.length <= 1000 || "一度に分析できるのは，1000文字までです",
+          (v) => v.length <= 2000 || "一度に分析できるのは，2000文字までです",
         ],
       },
       myLoad: false,
