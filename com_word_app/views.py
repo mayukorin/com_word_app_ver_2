@@ -45,7 +45,8 @@ class SentenceAnalyzeView(views.APIView):
             for word_and_count in common_10_words:
                 word = word_and_count[0]
                 count = word_and_count[1]
-                wiki_url = ""
+                wiki_url = "https://www.google.com/search?q="+word
+                '''
                 search_response = wikipedia.search(word)
                 if search_response:
                     try:
@@ -55,7 +56,7 @@ class SentenceAnalyzeView(views.APIView):
                         print(e)
                     except wikipedia.PageError as e:
                         print(e)
-
+                '''
                 result[word] = [wiki_url, count]
         res_list = {"result": result}
 
