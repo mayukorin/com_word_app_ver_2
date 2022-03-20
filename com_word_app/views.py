@@ -38,7 +38,8 @@ class SentenceAnalyzeView(views.APIView):
             db_stop_words = [sw.word for sw in StopWord.objects.all()]
             for w in lemmatized_sentence:
                 if w not in default_stop_words and w not in db_stop_words:
-                    filtered_sentence.append(w)
+                    filtered_sentence.append(w.lower()) # 全て小文字へ
+
 
             common_10_words = (nltk.FreqDist(filtered_sentence)).most_common(10)
 
