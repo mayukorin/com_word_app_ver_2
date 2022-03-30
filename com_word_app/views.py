@@ -38,14 +38,16 @@ class SentenceAnalyzeView(views.APIView):
             db_stop_words = [sw.word for sw in StopWord.objects.all()]
             for w in lemmatized_sentence:
                 if w not in default_stop_words and w not in db_stop_words:
-                    filtered_sentence.append(w)
+                    filtered_sentence.append(w.lower()) # 全て小文字へ
+
 
             common_10_words = (nltk.FreqDist(filtered_sentence)).most_common(10)
 
             for word_and_count in common_10_words:
                 word = word_and_count[0]
                 count = word_and_count[1]
-                wiki_url = ""
+                wiki_url = "https://www.google.com/search?q="+word
+                '''
                 search_response = wikipedia.search(word)
                 if search_response:
                     try:
@@ -55,7 +57,7 @@ class SentenceAnalyzeView(views.APIView):
                         print(e)
                     except wikipedia.PageError as e:
                         print(e)
-
+                '''
                 result[word] = [wiki_url, count]
         res_list = {"result": result}
 
